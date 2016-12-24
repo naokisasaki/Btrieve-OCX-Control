@@ -1,0 +1,60 @@
+<HTML>
+<HEAD>
+<OBJECT
+    ID=BtrvCtrl1
+    CLASSID="clsid:36F63C03-ADE4-11D0-918D-444553540000">
+</OBJECT>
+</HEAD>
+
+
+<A NAME="START">
+<BODY><FORM NAME="form1">
+<H3>Btrieve Access Control Test Page</H3><BR>
+
+óXï÷î‘çÜ: <INPUT NAME="text1" TYPE="TEXT" SIZE="20">
+<BR>
+<BR>
+<BR>
+<BR>
+<A ID="BTN1" HREF="BtrvTest.html">Find</A>
+
+
+
+
+<SCRIPT LANGUAGE="VBSCRIPT">
+
+sub BTN1_OnClick()
+	BtrvCtrl1.Open "c:\usr\imario\customer\btrclass\ziptbl"
+
+	document.open
+	document.write "<H3>Btrieve Search Result</H3><BR>"
+
+	BtrvCtrl1.GetEqual document.form1.text1.value
+
+	Count = 0
+	document.write "<TABLE BORDER>"
+
+	while BtrvCtrl1.Status = 0 and Count < 20
+		Count = Count + 1
+
+		document.write "<TR>"
+		document.write "<TD>" + BtrvCtrl1.GetStringField(0) + "</TD>"
+		document.write "<TD>" + BtrvCtrl1.GetStringField(1) + "</TD>"
+		document.write "</TR>"
+
+		BtrvCtrl1.GetNext
+	wend
+
+	BtrvCtrl1.Close
+
+	document.write "</TABLE>"
+	document.write "<BR>"
+	document.write "<A HREF=""BtrvTest.html#START"" TARGET=""text"">Return</A>"
+	document.close
+end sub
+
+</SCRIPT>
+
+</BODY>
+</FORM>
+</HTML>

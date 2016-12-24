@@ -1,0 +1,6 @@
+# Field Information File for Btrieve Version 5 and later
+#
+
+# FIELD NAME      START  LENGTH  TYPE
+ZIP_NO,               1,      6, STRING
+NAME,                 7,     54, STRING

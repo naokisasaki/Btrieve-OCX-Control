@@ -1,0 +1,93 @@
+// Btrieve.odl : OLE コントロール プロジェクトのタイプ ライブラリのソース
+
+// このファイルはタイプ ライブラリ (Btrieve.tlb) を作成するために
+// タイプ ライブラリ作成ツール (mktyplib) によって処理されます。
+// タイプ ライブラリは Btrieve.ocx のリソースになります。
+
+#include <olectl.h>
+#include <idispids.h>
+
+[ uuid(36F63C00-ADE4-11D0-918D-444553540000), version(1.0),
+  helpstring("Btrieve OLE Control module"), control ]
+library BTRIEVELib
+{
+	importlib(STDOLE_TLB);
+	importlib(STDTYPE_TLB);
+
+	//  CBtrieveCtrl の最初のディスパッチ インターフェイス
+
+	[ uuid(36F63C01-ADE4-11D0-918D-444553540000),
+	  helpstring("Dispatch interface for Btrieve Control"), hidden ]
+	dispinterface _DBtrieve
+	{
+		properties:
+			// メモ - ClassWizard はこの位置にプロパティ情報を追加します。
+			//    このセクションの編集は慎重に行ってください。
+			//{{AFX_ODL_PROP(CBtrieveCtrl)
+			[id(1)] long Status;
+			//}}AFX_ODL_PROP
+
+		methods:
+			// メモ - ClassWizard はこの位置にメソッド情報を追加します。
+			//    このセクションの編集は慎重に行ってください。
+			//{{AFX_ODL_METHOD(CBtrieveCtrl)
+			[id(2)] boolean Open(BSTR filePath);
+			[id(3)] boolean Close();
+			[id(4)] boolean GetFirst();
+			[id(5)] boolean GetNext();
+			[id(6)] BSTR GetStringField(short fieldNo);
+			[id(7)] boolean GetEqual(BSTR findKey);
+			[id(8)] boolean StepFirst();
+			[id(9)] boolean StepNext();
+			[id(10)] void PutStringField(short fieldNo, BSTR strValue);
+			[id(11)] boolean Insert();
+			[id(12)] boolean Update();
+			[id(13)] boolean Delete();
+			[id(14)] VARIANT GetFieldValue(VARIANT field);
+			[id(15)] boolean PutFieldValue(VARIANT field, VARIANT value);
+			[id(16)] boolean GetGTorEQ(BSTR findkey);
+			[id(17)] boolean GetLast();
+			[id(18)] boolean GetPrev();
+			[id(19)] boolean GetGT(BSTR strFindKey);
+			[id(20)] boolean GetLT(BSTR lpszFindKey);
+			[id(21)] boolean GetLTorEQ(BSTR lpszFindKey);
+			[id(22)] boolean StepLast();
+			[id(23)] boolean StepPrev();
+			[id(24)] boolean AllDelete();
+			[id(25)] long GetRecordCount();
+			[id(26)] short GetFieldCount();
+			[id(27)] BSTR GetFieldName(short FieldNo);
+			[id(28)] short GetFieldLength(short nFieldNo);
+			[id(29)] void SetKey(short nKeyNo);
+			//}}AFX_ODL_METHOD
+	};
+
+	//  CBtrieveCtrl のイベント ディスパッチ インターフェイス
+
+	[ uuid(36F63C02-ADE4-11D0-918D-444553540000),
+	  helpstring("Event interface for Btrieve Control") ]
+	dispinterface _DBtrieveEvents
+	{
+		properties:
+			//  イベント インターフェイスにプロパティはありません
+
+		methods:
+			// メモ - ClassWizard はこの位置にイベント情報を追加します。
+			//    このセクションの編集は慎重におこなってください。
+			//{{AFX_ODL_EVENT(CBtrieveCtrl)
+			//}}AFX_ODL_EVENT
+	};
+
+	//  CBtrieveCtrl のクラス情報
+
+	[ uuid(36F63C03-ADE4-11D0-918D-444553540000),
+	  helpstring("Btrieve Control"), control ]
+	coclass Btrieve
+	{
+		[default] dispinterface _DBtrieve;
+		[default, source] dispinterface _DBtrieveEvents;
+	};
+
+
+	//{{AFX_APPEND_ODL}}
+};
